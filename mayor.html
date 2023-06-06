@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Determinar el número mayor</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+          <li><a href="index.html">inicio</a></li>
+      </ul>
+  </nav> 
+  </header>
+  <h1>Determinar el número mayor</h1>
+
+  <label for="numeros">Ingresa los números separados por comas:</label>
+  <input type="text" id="numeros">
+
+  <br>
+
+  <button onclick="determinarMayor()">Calcular</button>
+
+  <h2>Resultado:</h2>
+  <p id="resultado"></p>
+
+  <script>
+    function determinarMayor() {
+      var numeros = document.getElementById('numeros').value;
+
+      var resultadoElemento = document.getElementById('resultado');
+      resultadoElemento.innerHTML = '';
+
+      if (numeros === '') {
+        resultadoElemento.innerHTML = '<span class="error">Por favor, ingresa al menos un número.</span>';
+        return;
+      }
+
+      var numerosArray = numeros.split(',');
+
+      for (var i = 0; i < numerosArray.length; i++) {
+        var numero = parseFloat(numerosArray[i].trim());
+
+        if (isNaN(numero)) {
+          resultadoElemento.innerHTML = '<span class="error">Por favor, ingresa números válidos.</span>';
+          return;
+        }
+
+        if (i === 0 || numero > mayor) {
+          var mayor = numero;
+        }
+      }
+
+      resultadoElemento.innerHTML = 'El número mayor es: <strong>' + mayor + '</strong>';
+    }
+  </script>
+</body>
+</html>
