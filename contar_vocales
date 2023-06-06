@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de vocales en una frase</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+          <li><a href="index.html">inicio</a></li>
+      </ul>
+  </nav> 
+  </header>
+  <h1>Contador de vocales en una frase</h1>
+
+  <label for="frase">Ingresa una frase:</label>
+  <input type="text" id="frase">
+
+  <br>
+
+  <button onclick="contarVocales()">Contar</button>
+
+  <h2>Resultados:</h2>
+  <ul id="resultados"></ul>
+
+  <script>
+    function contarVocales() {
+      var frase = document.getElementById('frase').value;
+      var vocales = { a: 0, e: 0, i: 0, o: 0, u: 0 };
+
+      frase = frase.toLowerCase(); // Convertimos la frase a minúsculas para simplificar la búsqueda de vocales
+
+      for (var i = 0; i < frase.length; i++) {
+        var letra = frase.charAt(i);
+
+        if (/[aeiou]/.test(letra)) { // Verificamos si la letra actual es una vocal
+          vocales[letra]++;
+        }
+      }
+
+      var resultadosElemento = document.getElementById('resultados');
+      resultadosElemento.innerHTML = '';
+
+      for (var vocal in vocales) {
+        var cantidad = vocales[vocal];
+        var item = document.createElement('li');
+        item.textContent = 'La vocal "' + vocal.toUpperCase() + '" aparece ' + cantidad + ' vez(es).';
+        resultadosElemento.appendChild(item);
+      }
+    }
+  </script>
+</body>
+</html>
