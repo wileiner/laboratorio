@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mis Ejercicios</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var urlInput = document.getElementById('url');
+      urlInput.value = window.location.href;
+    });
+  </script>
+  <h1>Ejercicios en JavaScript</h1>
+  <section>
+    <h2>Detectar si la cadena de entrada es un palíndromo</h2>
+    <ul>
+      <li><a href="palindromo.html">Script para detectar palíndromos</a></li>
+    </ul>
+
+    <h2>Comparar números y mostrar el mayor</h2>
+    <ul>
+      <li><a href="mayor.html">Script para comparar números</a></li>
+    </ul>
+
+    <h2>Mostrar las vocales en una frase</h2>
+    <ul>
+      <li><a href="vocales.html">Script para mostrar vocales</a></li>
+    </ul>
+
+    <h2>Contar las vocales en una frase</h2>
+    <ul>
+      <li><a href="contar_vocales.html">Script para contar vocales</a></li>
+    </ul>
+  </section>
+
+  <h1>AJAX</h1>
+  <section>
+    <h2>Mostrar Contenidos</h2>
+    <form id="urlForm">
+      <label for="urlInput">URL:</label>
+      <input type="text" id="url" readonly>
+      <button type="button" onclick="mostrarContenidos()" >Mostrar Contenidos</button>
+      <script>
+        function mostrarContenidos() {
+          var url = document.getElementById('url').value;
+          var contenidoDiv = document.getElementById('contenidos');
+    
+          fetch(url)
+            .then(response => response.text())
+            .then(data => {
+              contenidoDiv.textContent = data;
+            })
+            .catch(error => {
+              contenidoDiv.textContent = 'Error al obtener los contenidos.';
+            });
+        }
+      </script>
+    </form>
+    
+
+    <h2>Estados de la petición:</h2>
+    <p id="estadoPeticion">No iniciada</p>
+
+    <h2>Cabeceras HTTP de la respuesta:</h2>
+    <pre id="cabecerasRespuesta"></pre>
+
+    <h2>Código de estado:</h2>
+    <p id="codigoEstado"></p>
+
+    <h2>Contenidos del archivo:</h2>
+    <pre id="contenidosArchivo"></pre>
+  </section>
+</body>
+</html>
