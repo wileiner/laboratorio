@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script de Detección de Palíndromos</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+          <li><a href="index.html">inicio</a></li>
+      </ul>
+  </nav> 
+  </header>
+  <script>
+    function esPalindromo(cadena) {
+      cadena = cadena.toLowerCase().replace(/ /g, '');
+      var longitud = cadena.length;
+      
+      for (var i = 0; i < longitud / 2; i++) {
+        if (cadena[i] !== cadena[longitud - 1 - i]) {
+          return false;
+        }
+      }
+      
+      return true;
+    }
+
+    var cadena = prompt('Ingrese una cadena de texto:');
+    var resultado = esPalindromo(cadena);
+
+    if (resultado) {
+      document.write('La cadena "' + cadena + '" es un palíndromo.');
+    } else {
+      document.write('La cadena "' + cadena + '" no es un palíndromo.');
+    }
+  </script>
+</body>
+</html>
