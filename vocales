@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar vocales en una frase</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+          <li><a href="index.html">inicio</a></li>
+      </ul>
+  </nav> 
+  </header>
+  <h1>Buscar vocales en una frase</h1>
+
+  <label for="frase">Ingresa una frase:</label>
+  <input type="text" id="frase">
+
+  <br>
+
+  <button onclick="buscarVocales()">Buscar</button>
+
+  <h2>Vocales encontradas:</h2>
+  <ul id="vocales"></ul>
+
+  <script>
+    function buscarVocales() {
+      var frase = document.getElementById('frase').value;
+      var vocalesEncontradas = {};
+
+      frase = frase.toLowerCase(); // Convertimos la frase a minúsculas para simplificar la búsqueda de vocales
+
+      for (var i = 0; i < frase.length; i++) {
+        var letra = frase.charAt(i);
+
+        if (/[aeiou]/i.test(letra)) { // Utilizamos una expresión regular para verificar si la letra es una vocal
+          if (vocalesEncontradas[letra]) {
+            vocalesEncontradas[letra]++;
+          } else {
+            vocalesEncontradas[letra] = 1;
+          }
+        }
+      }
+
+      var vocalesElemento = document.getElementById('vocales');
+      vocalesElemento.innerHTML = '';
+
+      for (var vocal in vocalesEncontradas) {
+        var cantidad = vocalesEncontradas[vocal];
+        var item = document.createElement('li');
+        item.textContent = vocal + ': ' + cantidad;
+        vocalesElemento.appendChild(item);
+      }
+    }
+  </script>
+</body>
+</html>
